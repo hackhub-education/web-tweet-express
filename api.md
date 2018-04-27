@@ -104,7 +104,7 @@ header: {
   name: String,
   location: String,
   bio: String,
-  imageUrl: String
+  avatarUrl: String
 }
 ```
 * **Response**
