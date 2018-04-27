@@ -1,0 +1,22 @@
+{
+  "name": "web-tweet-express",
+  "version": "1.0.0",
+  "description": "A twitter like web application.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdxd/web-tweet-express.git"
+  },
+  "author": "Michael Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webdxd/web-tweet-express/issues"
+  },
+  "homepage": "https://github.com/webdxd/web-tweet-express#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
