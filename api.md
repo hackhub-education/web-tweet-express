@@ -7,7 +7,7 @@
 * **Data:**
 ```
 {
-	username: String,
+  username: String,
   password: String
 }
 ```
@@ -17,7 +17,7 @@
 * * **Data:**
 ```
 {
-	username: String,
+  username: String,
   password: String
 }
 ```
@@ -34,8 +34,8 @@
 * **Data:**
 ```
 {
-	userId: ObjectId,
-	content: String,
+  userId: ObjectId,
+  content: String,
   imageUrl: String
 }
 ```
@@ -54,7 +54,7 @@
 * **Data:**
 ```
 {
-	name: String,
+  name: String,
   location: String,
   Bio: String
 }
@@ -66,7 +66,7 @@
 * **Data:**
 ```
 {
-	name: String,
+  name: String,
   location: String,
   Bio: String
 }
