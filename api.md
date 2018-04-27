@@ -2,6 +2,13 @@
 
 ### Host: https://api.webdxd.com
 
+### Note: if the API is `token required`, you need to set your jwt token in the header as below:
+```
+header: {
+  Authorization: JWT JSON_WEB_TOKEN_STRING.....
+}
+```
+
 ### POST `/auth/login`
 * **Description:** authenticate a user.
 * **Request body:**
@@ -48,24 +55,11 @@
 }
 ```
 
-### GET `/tweet/:id`
-* **Description:** get detail for a tweet.
-* **Url params:** mongo object id of the tweet
-* **Response**
-```
-{
-  tweet: Object,
-  error: Object,
-  success: Bool
-}
-```
-
-### POST `/tweet`
+### POST `/tweet` (token required)
 * **Description:** post a new tweet
 * **Request body:**
 ```
 {
-  userId: ObjectId,
   content: String,
   imageUrl: String
 }
@@ -78,7 +72,7 @@
   success: Bool
 }
 ```
-### DELETE `/tweet/:id`
+### DELETE `/tweet/:id` (token required)
 * **Description:** delete a tweet.
 * **Url params:** mongo object id of the tweet
 * **Response**
@@ -89,7 +83,7 @@
 }
 ```
 
-### GET `/profile/:id`
+### GET `/profile/:id` (token required)
 * **Description:** get profile data for specific user
 * **Url params:** mongo object id of the user
 * **Response**
@@ -101,27 +95,7 @@
 }
 ```
 
-### POST `/profile/:id`
-* **Description:** add profile data for specific user
-* **Url params:** mongo object id of the user
-* **Request body:**
-```
-{
-  name: String,
-  location: String,
-  Bio: String
-}
-```
-* **Response**
-```
-{
-  profile: Object,
-  error: Object,
-  success: Bool
-}
-```
-
-### Update `/profile/:id`
+### Update `/profile/:id` (token required)
 * **Description:** update profile data for specific user
 * **Url params:** mongo object id of the user
 * **Request body:**
@@ -129,7 +103,8 @@
 {
   name: String,
   location: String,
-  Bio: String
+  bio: String,
+  imageUrl: String
 }
 ```
 * **Response**
