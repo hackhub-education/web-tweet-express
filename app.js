@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
+app.get('/ab+cd', (req, res) => {
   res.render('index', { title: 'Welcome to WebDxD !'})
 });
 
