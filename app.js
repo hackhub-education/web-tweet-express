@@ -4,7 +4,6 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const tweets = require('./tweets');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,25 +21,13 @@ app.use(logger('dev')); // log requests in server console
 
 app.locals.moment = require('moment');
 
-app.get('/', (req, res) => {
-  res.render('index', { tweets })
-});
+// import routers
+const index = require('./routes/index');
+const profile = require('./routes/profile');
 
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-
-app.get('/signup', (req, res) => {
-  res.render('signup');
-});
-
-app.get('/profile', (req, res) => {
-  res.render('profile');
-});
-
-app.get('/profile/edit', (req, res) => {
-  res.render('editProfile');
-});
+// apply router middleware
+app.use('/', index);
+app.use('/profile', profile);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
