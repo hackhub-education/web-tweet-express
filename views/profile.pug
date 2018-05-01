@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .container
+    .col-2of5.bg-white.profile
+      img.avatar(src="/img/avatar.jpg" alt="avatar")
+      h3 Yan Hong
+      h5 @honlyan
+      h4
+        i.fas.fa-map-marker-alt
+        |  Vancouver
+      p.center
+        | Director of EduHacks * Digital Ocean Vancouver Meetup Co-organizer * CEO of HackHub * Founder of Inverse Technology Inc.
+      a.btn-border.space-top(href="/profile/edit") Edit profile
+      a.btn-border.space-top(href="/login") Log out
+    .col-3of5.bg-white
+      .tweet
+        form(action="#")
+          .row
+            img.avatar-sm.v-top(src="/img/avatar.jpg" alt="avatar")
+            textarea.input-tweet(placeholder="What's up?")
+          .row.tweet-actions
+            input.hidden(type="file")
+            button.btn-clear
+              i.far.fa-image
+            button.btn-primary Post
+      .tweet
+        .row
+          img.avatar-sm(src="/img/avatar.jpg" alt="avatar")
+          h4
+            b Yan Hong
+          h5 @honlyan
+          h5 April 27, 2018 6:14AM
+        p New WebDxD project is coming soon…
