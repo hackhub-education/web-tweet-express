@@ -13,11 +13,11 @@ app.set('view engine', 'pug');
  * middleware
  * note: middleware is running in sequence, from top to bottom
  */
-app.use(logger('dev')); // log requests in server console
 app.use(bodyParser.json()); // parse client request data to json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev')); // log requests in server console
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Welcome to WebDxD !'})

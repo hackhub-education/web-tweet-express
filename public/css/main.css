@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #707070;
+}
+
+body {
+    background-color: #F8F8F8;
+    padding-top: 66px;
+}
+
+textarea, input, button { 
+    outline: none; 
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #29C9DE;
+    text-align: center;
+}
+
+h4 {
+    font-weight: 500;
+    color: #707070;
+    margin: 1rem;
+    font-size: .83rem;
+}
+
+h5 {
+    font-weight: 300;
+    color: #B4B4B4;
+    margin: 0 5px;
+}
+
+h6 {
+    font-weight: 300;
+    color: #B4B4B4;
+    margin: 1rem 0;
+    font-size: .83rem;
+}
+
+p {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.4rem;
+}
+
+button {
+    opacity: .8;
+    transition: opacity .3s ease;
+    text-align: center;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.center {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.v-top {
+    vertical-align: top;
+}
+
+.bg-white {
+    background-color: #FFF;
+}
+
+.nav-bar {
+    height: 3rem;
+    width: 100%;
+    background-color: #FFF;
+    box-shadow: 0px 0px 1px 1px #B4B4B4;
+    position: fixed;
+    top: 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: 100%;
+    align-items: center;
+}
+
+.nav-bar a {
+    color: #37484F;
+}
+
+.nav-bar ul {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 150px;
+    height: auto;
+    max-width: 300px;
+}
+
+.tweet {
+    border-top: 2px solid #F8F8F8;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.tweet:hover {
+    background-color: #FAFAFA;
+}
+
+.tweet p img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.tweet p {
+    margin-top: 0;
+    margin-left: 3rem;
+}
+
+.avatar-sm {
+    border-radius: 50%;
+    width: 35px;
+    height: auto;
+}
+
+.logo {
+    width: 2rem;
+}
+
+.profile {
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-auth {
+    align-items: flex-start
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-primary {
+    border: 1px solid #29C9DE;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: #29C9DE;
+    color: #F8F8F8;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+input, textarea {
+    border-radius: 3px;
+    border: 1px solid #707070;
+    padding: 10px 15px;
+    height: 2.5rem;
+    min-height: 35px;
+    flex-grow: 1;
+    color: #707070;
+    resize: none;
+    opacity: .7;
+}
+
+input:focus, textarea:focus {
+    opacity: 1;
+}
+
+.input-tweet {
+    margin-left: 1rem;
+    border-color: #29C9DE;
+}
+
+.input-tweet::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #29C9DE;
+}
+
+.input-tweet:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #29C9DE;
+}
+
+.input-tweet::-ms-input-placeholder { /* Microsoft Edge */
+    color: #29C9DE;
+}
+
+.input-auth, .input-profile {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.input-profile {
+    margin-top: 1rem;
+}
+
+textarea.input-profile {
+    min-height: 8rem;
+}
+
+.btn-clear {
+    border: none;
+    background: transparent;
+    color: #29C9DE;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.btn-border {
+    border-radius: 20px;
+    border: 2px solid #707070;
+    color: #707070;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color .3s ease, background-color .3s ease;
+    min-width: 150px;
+}
+
+.btn-border:hover {
+    background-color: #707070;
+    color: #F8F8F8;
+}
+
+.space-top {
+    margin-top: 1rem;
+}
+
+.tweet-actions {
+    margin-top: 10px;
+    margin-left: 3rem;
+    justify-content: space-between;
+}
+
+.relative {
+    position: relative;
+}
+
+.fade-cover {
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    top: 0;
+    opacity: .7;
+}
+
+.avatar-upload {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.img-edit {
+    cursor: pointer;
+}
+
+.img-edit:hover .avatar-upload {
+    opacity: 1;
+}
