@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const tweets = require('../tweets');
 
 router.get('/', (req, res) => {
   res.render('profile');

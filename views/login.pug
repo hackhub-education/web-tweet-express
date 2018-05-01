@@ -4,9 +4,9 @@ block content
   .container
     .col-2of5.bg-white.profile.user-auth
       h3 Log in to Web Tweet
-      form(action="/")
-        input.input-auth(type="text" placeholder="Username" required="")
-        input.input-auth(type="password" placeholder="Password" required="")
+      form#loginForm
+        input.input-auth(type="text" name="username" placeholder="Username" required="")
+        input.input-auth(type="password" name="password" placeholder="Password" required="")
         button.btn-primary Log in
       h6
         | New to Web Tweet? 
@@ -41,3 +41,27 @@ block content
           | Who goes to banks anymore? Not you, with this UK banking app 💰 https://www.producthunt.com/posts/starling-bank-2
           br
           img(src="/img/tweet.jpg" alt="tweet")
+
+block script
+  script.
+    $('#loginForm').submit(function(e) {
+      e.preventDefault();
+      const username = $('[name=username]').val();
+      const password = $('[name=password]').val();
+      $.ajax({
+        method: 'POST',
+        url: '/login',
+        data: {
+          username,
+          password
+        },
+        success(res) {
+          if (res.token) {
+            localStorage.setItem('userData', JSON.stringify(res));
+            location.href='/';
+          } else {
+            alert(res.message || res);
+          }
+        }
+      });
+    })

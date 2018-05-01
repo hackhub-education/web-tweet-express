@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // connect mongoDB
 mongoose.connect('mongodb://localhost:27017/webdxd');
@@ -25,13 +26,17 @@ app.use(logger('dev')); // log requests in server console
 
 app.locals.moment = require('moment');
 
+require('./passport');
+
 // import routers
 const index = require('./routes/index');
 const profile = require('./routes/profile');
+const tweet = require('./routes/tweet');
 
 // apply router middleware
 app.use('/', index);
 app.use('/profile', profile);
+app.use('/tweet', tweet);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
