@@ -4,6 +4,10 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+// connect mongoDB
+mongoose.connect('mongodb://localhost:27017/webdxd');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
