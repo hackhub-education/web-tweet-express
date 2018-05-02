@@ -4,10 +4,10 @@ block content
   .container
     .col-2of5.bg-white.profile.user-auth
       h3 Log in to Web Tweet
-      form(action="profile-edit.html")
-        input.input-auth(type="text" placeholder="Username" required="")
-        input.input-auth(type="password" placeholder="Password" required="")
-        input.input-auth(type="password" placeholder="Repeat password" required="")
+      form(action="/signup" method="POST")
+        input.input-auth(type="text" name="username" placeholder="Username" required="")
+        input.input-auth(type="password" name="password" placeholder="Password" required="")
+        input.input-auth(type="password" name="confirmPassword" placeholder="Repeat password" required="")
         button.btn-primary Sign up
       h6
         | Have an account?

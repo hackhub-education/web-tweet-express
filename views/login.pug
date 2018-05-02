@@ -4,9 +4,9 @@ block content
   .container
     .col-2of5.bg-white.profile.user-auth
       h3 Log in to Web Tweet
-      form(action="/")
-        input.input-auth(type="text" placeholder="Username" required="")
-        input.input-auth(type="password" placeholder="Password" required="")
+      form(action="/login" method="POST")
+        input.input-auth(type="text" name="username" placeholder="Username" required="")
+        input.input-auth(type="password" name="password" placeholder="Password" required="")
         button.btn-primary Log in
       h6
         | New to Web Tweet? 

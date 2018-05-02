@@ -5,6 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
 
 // connect mongoDB
 mongoose.connect('mongodb://localhost:27017/webdxd');
@@ -22,8 +24,32 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev')); // log requests in server console
+/**
+ * you need to use session middleware to create session store
+ * if you want to use passport session
+*/
+app.use(session({
+  secret: 'webdxd',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // only set this to true if you are in HTTPS connection
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport config
+require('./passport');
+/**
+ * set local variables, so you can use it in template engine
+ */
 app.locals.moment = require('moment');
+
+/** custom middleware automatically adding user into templates */
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 // import routers
 const index = require('./routes/index');
