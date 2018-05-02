@@ -3,19 +3,19 @@ extends layout
 block content
   .container
     .col-2of5.bg-white.profile
-      img.avatar(src="/img/avatar.jpg" alt="avatar")
-      h3 Yan Hong
-      h5 @honlyan
+      img.avatar(src=user.avatarUrl alt="avatar")
+      h3=user.name
+      h5=`@${user.username}`
       h4
         i.fas.fa-map-marker-alt
-        |  Vancouver
+        |  #{user.location}
       p.center
-        | Director of EduHacks * Digital Ocean Vancouver Meetup Co-organizer * CEO of HackHub * Founder of Inverse Technology Inc.
+        |  #{user.bio}
     .col-3of5.bg-white
       .tweet
         form(action="#")
           .row
-            img.avatar-sm.v-top(src="/img/avatar.jpg" alt="avatar")
+            img.avatar-sm.v-top(src=user.avatarUrl alt="avatar")
             textarea.input-tweet(placeholder="What's up?")
           .row.tweet-actions
             input.hidden(type="file")

@@ -2,18 +2,18 @@ extends layout
 
 block content
   .container
-    .col-2of5.bg-white.profile
-      .relative.img-edit
-        img.avatar(src="/img/avatar.jpg" alt="avatar")
-        input.hidden(type="file")
-        img.avatar-upload(src="/img/upload.png" alt="upload-img")
-      input.input-profile(type="text" value="Yan Hong" placeholder="Full name")
-      h5 @honlyan
-      input.input-profile(type="text" value="Vancouver" placeholder="Location")
-      textarea.input-profile(placeholder="Personal description")
-        | Director of EduHacks * Digital Ocean Vancouver Meetup Co-organizer * CEO of HackHub * Founder of Inverse Technology Inc.
-      a.btn-primary.space-top(href="/profile") Save
-      a.btn-border.space-top(href="/profile") Cancel
+    form(action=`/profile/${user._id}` method="POST")
+      .col-2of5.bg-white.profile
+        .relative.img-edit
+          img.avatar(src=user.avatarUrl alt="avatar")
+          input.hidden(type="file")
+          img.avatar-upload(src="/img/upload.png" alt="upload-img")
+        input.input-profile(type="text" value=user.name name="name" placeholder="Full name")
+        h5=`@${user.username}`
+        input.input-profile(type="text" value=user.location name="location" placeholder="Location")
+        textarea.input-profile(placeholder="Personal description" name="bio")=user.bio
+        button.btn-primary.space-top Save
+        a.btn-border.space-top(href="/profile") Cancel
     .col-3of5.bg-white.relative
       .tweet
         form(action="#")
