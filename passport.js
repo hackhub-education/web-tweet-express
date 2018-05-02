@@ -5,7 +5,7 @@ const Users = require('./models/users');
 const JWTStrategy   = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
-passport.use(new LocalStrategy(Users.authenticate()));
+passport.use(Users.createStrategy());
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
