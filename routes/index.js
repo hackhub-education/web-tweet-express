@@ -4,8 +4,9 @@ const passport = require('passport');
 const router = express.Router();
 const Tweets = require('../models/tweets');
 const Users = require('../models/users');
+const utils = require('../utils');
 
-router.get('/', (req, res) => {
+router.get('/', utils.requireLogin, (req, res) => {
   Tweets.find({}, (err, tweets) => {
     res.render('index', { tweets });
   })
