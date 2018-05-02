@@ -97,7 +97,7 @@ header: {
 }
 ```
 
-### Update `/profile/:id` (token required)
+### PUT `/profile/:id` (token required)
 * **Description:** update profile data for specific user
 * **Url params:** mongo object id of the user
 * **Request body:**
