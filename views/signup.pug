@@ -12,33 +12,4 @@ block content
       h6
         | Have an account?
         a(href="/login") Log in
-    .col-3of5.bg-white
-      .tweet
-        form(action="#")
-          .row
-            img.avatar-sm.v-top(src="/img/avatar.jpg" alt="avatar")
-            textarea.input-tweet(placeholder="What's up?")
-          .row.tweet-actions
-            input.hidden(type="file")
-            button.btn-clear
-              i.far.fa-image
-            button.btn-primary Post
-      .tweet
-        .row
-          img.avatar-sm(src="/img/avatar.jpg" alt="avatar")
-          h4
-            b Yan Hong
-          h5 @honlyan
-          h5 April 27, 2018 6:14AM
-        p New WebDxD project is coming soon…
-      .tweet
-        .row
-          img.avatar-sm(src="/img/ph-logo.png" alt="avatar")
-          h4
-            b Product Hunt
-          h5 @ProductHunt
-          h5 April 26, 2018 10:20PM
-        p
-          | Who goes to banks anymore? Not you, with this UK banking app 💰 https://www.producthunt.com/posts/starling-bank-2
-          br
-          img(src="/img/tweet.jpg" alt="tweet")
+    include tweet

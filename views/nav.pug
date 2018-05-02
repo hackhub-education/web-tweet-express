@@ -7,5 +7,6 @@ nav.nav-bar
       li
         a(href="/") Home
     div
-      a(href="/profile")
-        img.avatar-sm(src="/img/avatar.jpg" alt="avatar")
+      if (user)
+        a(href="/profile")
+          img.avatar-sm(src=user.avatarUrl alt="avatar")

@@ -7,9 +7,7 @@ const Users = require('../models/users');
 const utils = require('../utils');
 
 router.get('/', utils.requireLogin, (req, res) => {
-  Tweets.find({}, (err, tweets) => {
-    res.render('index', { tweets });
-  })
+    res.render('index');
 });
 
 router.get('/login', (req, res) => {

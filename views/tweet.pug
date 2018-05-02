@@ -1,0 +1,23 @@
+.col-3of5.bg-white
+  if (user)
+    .tweet
+      form(action="#")
+        .row
+          img.avatar-sm.v-top(src=user.avatarUrl alt="avatar")
+          textarea.input-tweet(placeholder="What's up?")
+        .row.tweet-actions
+          input.hidden(type="file")
+          button.btn-clear
+            i.far.fa-image
+          button.btn-primary Post
+  each tweet in tweets
+    .tweet
+      .row
+        img.avatar-sm(src=tweet.author.avatarUrl alt="avatar")
+        h4
+          b=tweet.author.name
+        h5=`@${tweet.author.username}`
+        h5=moment(tweet.createdAt).format('MMMM D, YYYY hh:mm A')
+      p=tweet.content
+        if (tweet.imageUrl)
+          img(src=tweet.imageUrl alt="tweet")
