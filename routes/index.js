@@ -21,7 +21,7 @@ router.post('/auth/login', (req, res, next) => {
       }
       // generate a signed json web token with the contents of user object and return it in the response
       const token = jwt.sign({ id: user._id }, 'webdxd_token');
-      return res.json({ user, token, err: null, success: true });
+      return res.json({ profile: user, token, err: null, success: true });
     });
   })(req, res);
 });
@@ -43,7 +43,7 @@ router.post('/auth/signup', (req, res, next) => {
         }
         // generate a signed json web token with the contents of user object and return it in the response
         const token = jwt.sign({ id: user._id }, 'webdxd_token');
-        return res.json({ user, token, error: null, success: true });
+        return res.json({ profile: user, token, error: null, success: true });
       });
     })(req, res);
   });

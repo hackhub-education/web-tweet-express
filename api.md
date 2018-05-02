@@ -21,6 +21,7 @@ header: {
 * **Response**
 ```
 {
+  profile: Object,
   token: String,
   error: Object,
   success: Bool
@@ -38,6 +39,7 @@ header: {
 * **Response**
 ```
 {
+  profile: Object,
   token: String,
   error: Object,
   success: Bool
