@@ -54,18 +54,22 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  Tweets.find({}, (err, tweets) => {
+  const query = req.originalUrl.includes('/profile') ? { author: req.user._id } : {};
+  Tweets.find(query, (err, tweets) => {
     res.locals.tweets = tweets;
     next();
-  })
-})
+  }).populate('author').sort({createdAt: -1 })
+});
+
 // import routers
 const index = require('./routes/index');
 const profile = require('./routes/profile');
+const tweet = require('./routes/tweet');
 
 // apply router middleware
 app.use('/', index);
 app.use('/profile', profile);
+app.use('/tweet', tweet);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

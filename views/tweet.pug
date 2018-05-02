@@ -1,15 +1,16 @@
 .col-3of5.bg-white
   if (user)
-    .tweet
-      form(action="#")
+    form#tweetForm
+      .tweet
         .row
           img.avatar-sm.v-top(src=user.avatarUrl alt="avatar")
-          textarea.input-tweet(placeholder="What's up?")
+          textarea.input-tweet(placeholder="What's up?" name="content")
+        p
+          img#previewImage
         .row.tweet-actions
-          input.hidden(type="file")
-          button.btn-clear
+          button#tweetImage.btn-clear(type="button")
             i.far.fa-image
-          button.btn-primary Post
+          button.btn-primary(type="submit") Post
   each tweet in tweets
     .tweet
       .row

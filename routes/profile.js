@@ -13,7 +13,7 @@ router.get('/edit', utils.requireLogin, (req, res) => {
 });
 
 // update user profile
-router.post('/edit', utils.requireLogin, (req, res) => {
+router.post('/edit', utils.requireLogin, (req, res, next) => {
   Users.update({ _id: req.user._id }, req.body, (err) => {
     if(err) {
       return next(err);
@@ -24,7 +24,7 @@ router.post('/edit', utils.requireLogin, (req, res) => {
 });
 
 // update user avatar
-router.post('/avatar', utils.requireLogin, (req, res) => {
+router.post('/avatar', utils.requireLogin, (req, res, next) => {
   Users.update({ _id: req.user._id }, req.body, (err) => {
     if(err) {
       return next(err);

@@ -7,7 +7,8 @@ const UsersSchema = new Schema({
     username: { type: String, required: true },
     location: String,
     bio: String,
-    avatarUrl: { type: String, default: '/img/webdxd.png' }
+    avatarUrl: { type: String, default: '/img/webdxd.png' },
+    tweets: [{ type: Schema.Types.ObjectId, ref: 'Tweets' }]
 });
 
 UsersSchema.plugin(passportLocalMongoose);
