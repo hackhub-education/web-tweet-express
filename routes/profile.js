@@ -4,14 +4,6 @@ const Users = require('../models/users');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('profile');
-});
-
-router.get('/edit', (req, res) => {
-  res.render('editProfile');
-});
-
 // get user profile
 router.get('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   try {
