@@ -23,3 +23,4 @@ A twitter like web application.
 
 ## Step by step guide
 1. [server](./notes/1-server.md)
+2. [middleware](./notes/2-middleware.md)
