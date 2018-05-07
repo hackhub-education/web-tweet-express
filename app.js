@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 // connect mongoDB
-mongoose.connect('mongodb://localhost:27017/webdxd');
+mongoose.connect('mongodb://webdxd:webdxd27017@localhost:27017/webdxd');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
