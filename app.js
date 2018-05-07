@@ -32,11 +32,13 @@ require('./passport');
 const index = require('./routes/index');
 const profile = require('./routes/profile');
 const tweet = require('./routes/tweet');
+const auth = require('./routes/auth');
 
 // apply router middleware
 app.use('/', index);
 app.use('/profile', profile);
 app.use('/tweet', tweet);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
