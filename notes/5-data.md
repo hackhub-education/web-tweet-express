@@ -35,6 +35,10 @@ web-tweet-express
 	"createdAt": "2018-04-27T05:20:26.844Z"
 }]
 ```
+- Install `moment`
+```
+npm install --save moment
+```
 - In `app.js`
   - Require `tweets.json` 
   ```
@@ -46,10 +50,11 @@ web-tweet-express
     res.render('index', { tweets })
   });
   ```
-- Install `moment`
-```
-npm install --save moment
-```
+  - Add the following code before `GET` API
+  ```
+  app.locals.moment = require('moment');
+  ```
+  **Note:** The will allow you to use moment in pug.
 - In `index.pug`, replace
 ```
 .tweet
