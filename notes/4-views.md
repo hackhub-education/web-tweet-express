@@ -5,14 +5,14 @@
 ```
 web-tweet-express
 ├── app.js          #express entry file
-├── public
+├── public          #static assets
 └── package.json    #project information and dependencies
 ```
 - Copy the `css`,`img`, and `webfonts` folders from `web-tweet-static` project to the `public` folder.
 ```
 web-tweet-express
 ├── app.js          #express entry file
-├── public
+├── public          #static assets
 │   ├── css
 │   ├── img
 │   └── webfonts
@@ -31,8 +31,8 @@ app.use(logger('dev'));
 ```
 web-tweet-express
 ├── app.js          #express entry file
-├── views
-├── public
+├── views           #all view files
+├── public          #static assets
 │   ├── css
 │   ├── img
 │   └── webfonts
@@ -51,7 +51,7 @@ web-tweet-express
 ```
 web-tweet-express
 ├── app.js          #express entry file
-├── views
+├── views           #all view files
 │   ├── layout.pug
 │   ├── index.pug
 │   ├── nav.pug
@@ -59,7 +59,7 @@ web-tweet-express
 │   ├── signup.pug
 │   ├── profile.pug
 │   └── editProfile.pug
-├── public
+├── public          #static assets
 │   ├── css
 │   ├── img
 │   └── webfonts
