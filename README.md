@@ -22,6 +22,4 @@ A twitter like web application.
 4. Run node server: `node app` or `nodemon app` if you have installed `nodemon`.
 
 ## Step by step guide
-1. [server](https://github.com/webdxd/web-tweet-express/blob/2-middleware/notes/1-server.md)
-2. [middleware](https://github.com/webdxd/web-tweet-express/blob/2-middleware/notes/2-middleware.md)
-3. [html](https://github.com/webdxd/web-tweet-express/blob/2-middleware/notes/3-html.md)
+1. [server](./notes/1-server.md)
