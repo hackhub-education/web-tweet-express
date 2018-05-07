@@ -35,4 +35,4 @@ web-tweet-express
   ...
   app.listen(3000, () => console.log('Example app listening on port 3000!'));
   ```
-- Open browser and go to `http://localhost:3000`
+- Open browser and go to [http://localhost:3000](http://localhost:3000)
