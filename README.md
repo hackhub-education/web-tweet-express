@@ -25,3 +25,4 @@ A twitter like web application.
 1. [server](./notes/1-server.md)
 2. [middleware](./notes/2-middleware.md)
 3. [html](./notes/3-html.md)
+4. [views](./notes/4-views.md)
