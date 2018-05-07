@@ -28,3 +28,4 @@ A twitter like web application.
 4. [views](./notes/4-views.md)
 5. [data](./notes/5-data.md)
 6. [routes](./notes/6-routes.md)
+7. [models](./notes/7-models.md)
