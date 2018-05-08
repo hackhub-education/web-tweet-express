@@ -29,3 +29,4 @@ A twitter like web application.
 6. [routes](./notes/6-routes.md)
 7. [models](./notes/7-models.md)
 8. [passport](./notes/8-passport.md)
+9. [profile](./notes/9-profile.md)
