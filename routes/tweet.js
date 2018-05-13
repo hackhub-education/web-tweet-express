@@ -7,7 +7,7 @@ const router = express.Router();
 // get all tweets
 router.get('/', async (req, res) => {
   try {
-    const tweets = await Tweets.find({}).populate('author');
+    const tweets = await Tweets.find({}).sort('-createdAt').populate('author');
     return res.json({ tweets, error: null, success: true })
   } catch (err) {
     return res.json({ error: err, success: false })
