@@ -7,7 +7,7 @@ const router = express.Router();
 // get all tweets
 router.get('/', async (req, res) => {
   try {
-    const tweets = await Tweets.find({}).sort('-createdAt').populate('author');
+    const tweets = await Tweets.find({}).populate('author');
     return res.json({ tweets, error: null, success: true })
   } catch (err) {
     return res.json({ error: err, success: false })
@@ -22,6 +22,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), async (req, res
     // save the tweet id to user profile
     req.user.tweets.push(doc._id);
     await req.user.save();
+
+    doc.author = req.user
 
     return res.json({ tweet: doc, error: null, success: true });
   } catch (err) {
