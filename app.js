@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -18,6 +19,7 @@ app.set('view engine', 'pug');
  * middleware
  * note: middleware is running in sequence, from top to bottom
  */
+app.use(cors());
 app.use(bodyParser.json()); // parse client request data to json format
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
