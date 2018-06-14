@@ -1,6 +1,6 @@
 # API List
 
-### Host: https://api.webdxd.com
+### Host: https://tweet-api.webdxd.com
 
 ### Note: if the API is `token required`, you need to set your jwt token in the header as below:
 ```
