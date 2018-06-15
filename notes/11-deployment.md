@@ -31,7 +31,7 @@
 **Note** Remember where the .pem key is, or safe a backup somewhere.  You loose it, you loose access to the instance (server).
 
 ## Now we are done setting up the instances, let's ssh into it <a name='ssh'></a>
-1.  [View Instances](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2)
+1.  [View Instances](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceState)
 2.  Find the column name `IPv4 Public IP` this is your `instance public ip`.  Copy it.
 3.  SSH into server using terminal (windows, use git-bash terminal)
 	- `ssh -i <location of .pem> ubuntu@<instance public ip>`
