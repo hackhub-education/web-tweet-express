@@ -1,6 +1,16 @@
 # Course Instructions 11-Deployment
 
-## Setting Up AWS EC2 instance
+### Contents
+- [Setting Up AWS EC2 instance](#ec2-setup)
+- [SSH into instance](#ssh)
+- [What are needed in our instance for our backend server to run?](#our-needs)
+- [Install nginx](#install-nginx)
+- [Install nodejs](#install-nodejs)
+- [Test nodejs](#test-nodejs)
+- [Clone repo](#clone-repo)
+- [Install mongodb in instance](#install-mongodb)
+
+## Setting Up AWS EC2 instance <a name='ec2-setup'></a>
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
 2.  Find and select [EC2 services](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) (use the search bar or click on the services at the top left of the nav)
 
@@ -20,7 +30,7 @@
 
 **Note** Remember where the .pem key is, or safe a backup somewhere.  You loose it, you loose access to the instance (server).
 
-## Now we are done setting up the instances, let's ssh into it
+## Now we are done setting up the instances, let's ssh into it <a name='ssh'></a>
 1.  [View Instances](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2)
 2.  Find the column name `IPv4 Public IP` this is your `instance public ip`.  Copy it.
 3.  SSH into server using terminal (windows, use git-bash terminal)
@@ -67,7 +77,7 @@ ubuntu@ip-172-31-39-27:~$
 ```
 7.  `ubuntu@ip-172-31-39-27:~$` this means you are logged in as user name `ubuntu`
 
-## What are needed in our instance for our backend server to run?
+## What are needed in our instance for our backend server to run? <a name='our-needs'></a>
 [Week 8 Slide, page 9](https://docs.google.com/presentation/d/1FHtnNt2D-y9bvDC4mYqBAir5LytVxC4XompRgWNjtpA/edit#slide=id.g3c64275ecd_0_98)
 
 We need at least
@@ -77,7 +87,7 @@ We need at least
 Optional
   - mongodb
 
-## Now we are in our server, let's install nginx first.
+## Now we are in our server, let's install nginx first. <a name='install-nginx'></a>
 1.  [Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)  Run these two commands in terminal
     - `sudo apt-get update -y` [What does this do?](https://askubuntu.com/questions/222348/what-does-sudo-apt-get-update-do)
     - `sudo apt-get install nginx`
@@ -96,14 +106,14 @@ Where are static files usually stored
 	- can be defined anywhere you want it to be located
 ```
 
-## Since we got the web server running, let's install nodejs.
+## Since we got the web server running, let's install nodejs. <a name='install-nodejs'></a>
 1.  [Install nodejs](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)  Run these two commands in terminal
   - `curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - `
   - `sudo apt-get install nodejs -y`
 2.  Run these two commands in terminal to see if `node` and `npm` are installed
   - `node -v` and `npm -v`
 
-## Test if nodejs works
+## Test if nodejs works <a name='test-nodejs'></a>
 -  inside the instance create a file named `hello.js`
 -  use `vim` or `nano` to open editor then paste the following code inside `hello.js`
 ```
@@ -124,7 +134,7 @@ console.log('Server running at http://localhost:8080/');
 -  What do you see?  Now close this terminal if you see what is expected.  [Why not](#security-group)?
 
 
-## Clone repo
+## Clone repo <a name='clone-repo'></a>
 1.  in server terminal enter `cd` to make sure you are in user root directory
 2.  go to your [repo](https://github.com/webdxd/web-tweet-express)
 3.  Find the green `Clone or download` button. Click on it then copy the url
@@ -138,7 +148,7 @@ console.log('Server running at http://localhost:8080/');
 8.  enter `npm i` when you are in the directory to install `node_modules` needed
 9.  enter `node app.js`, what are you expecting?
 
-## Setup mongodb locally in the instance
+## Setup mongodb locally in the instance <a name='install-mongodb'></a>
 1.  [Install MongoDB](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04)  Run these two commands in terminal
   - `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927`
   - `echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list`
