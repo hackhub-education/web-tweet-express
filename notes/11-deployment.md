@@ -82,14 +82,14 @@ Optional
     - `sudo apt-get update -y` [What does this do?](https://askubuntu.com/questions/222348/what-does-sudo-apt-get-update-do)
     - `sudo apt-get install nginx`
 2.  Open any web browser input your `instance_public_ip` instead of an url.  See what shows up.
-3.  Anything such as a message saying `Welcome to nginx!` showed up? If not, [why](#debug-reminder)?
+3.  Anything such as a message saying `Welcome to nginx!` showed up? [Why not](#debug-reminder)?
 4.  Now we have a simple static page running online.
 
 **Notes**
 ```
 Commands usually used
   - sudo service nginx <options>
-    - start|stop|restart|reload|status
+    - <options>: start|stop|restart|reload|status
 
 Where are static files usually stored 
 	- /var/www/html/  (by default)
@@ -121,15 +121,57 @@ console.log('Server running at http://localhost:8080/');
 
 -  open a new terminal, ssh into the cloud server `ssh -i <location of .pem> ubuntu@<instance public ip>`
 -  run this in the new terminal after you are in `curl http://localhost:8080`
--  What do you see?  Now close this terminal if you see what is expected
+-  What do you see?  Now close this terminal if you see what is expected.  [Why not](#security-group)?
 
 
+## Clone repo
+1.  in server terminal enter `cd` to make sure you are in user root directory
+2.  go to your [repo](https://github.com/webdxd/web-tweet-express)
+3.  Find the green `Clone or download` button. Click on it then copy the url
+    -  make sure it starts with `https` not `git` because we did not setup any ssh key to access `git` directly which is prefered and more secure, instructions below for yourself to read.
+    -  [Generate SSH Key and add to ssh agent](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+    -  [Add SSH key to github](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+4.  in server termainl enter `pwd` and you should see `/home/ubuntu` as return saying you are in root directory of this user
+5.  now enter `git clone https://github.com/webdxd/web-tweet-express.git` which will ask your `github` account's usernamd and password
+6.  in server terminal enter `cd web-tweet-express/` which bring us into the directory
+7.  enter `git checkout 11-deployment` to change to the branch we are to deploy with
+8.  enter `npm i` when you are in the directory to install `node_modules` needed
+9.  enter `node app.js`, what are you expecting?
+
+## Setup mongodb locally in the instance
+1.  [Install MongoDB](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04)  Run these two commands in terminal
+  - `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927`
+  - `echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list`
+  - `sudo apt-get update -y`
+  - `sudo apt-get install -y mongodb-org`
+2.  This should install mongodb correctly, let's run `mongod` and see what happens. [Why not](#debug-mongodb)?
+3.  When `mongod` is running without errors, exit `mongod` by using `ctrl + c`
+4.  Run `sudo service mongod status`, if not running then run `sudo service mongod start`
+5.  Run `sudo systemctl enable mongod`  // this will automatically start mongod on boot up
+6.  Run `mongo`, now we are inside the `mongo shell` which you were taught how to use command line to `show dbs;` and do others
+7.  Run `show dbs;`, if you see some dbs then you have set this up correctly~ Hooray~
+```
+Commands usually used
+  - sudo service mongod <options>
+    - <options>: start|stop|restart|status
+```
 
 
 
 ## <a name="debug-reminder"></a>Debug reminder
-1.  Make sure aws port is opened by using [Security Group](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
+1.  Make sure aws port is opened by using [Security Group] <a name='security-group'></a>(https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
   - make sure the ports needed are open, especially `port 80`
   - click on the security group your instance is using
   - click on the `inbound` tab choose `edit`, then `Add Rule`
   - enter your type, protocol, port range and source (HTTP and HTTPS are already predefined, just choose the one you need)
+
+2.  If you are connecting to mongodb locally, is it installed? <a name='debug-mongodb'></a>
+  - if yes, what does the error message say?
+    - [/data/db not found](https://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder)?
+      - basically need a folder where stores the db info and usually by default it's in `/data/db` which does not exist yet
+      - enter `sudo mkdir -p /data/db`
+    - [/data/db/mongod.lock errno:13 Permission denied](https://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder)?
+      - permission of `/data/db` is not set correctly
+      - run these two commands
+        - `sudo chown -R $USER /data/db`  // changes ownership to current user
+        - `sudo chmod -R go+w /data/db`  // changes mode to writable
