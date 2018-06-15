@@ -10,7 +10,7 @@
 - [Clone repo](#clone-repo)
 - [Install mongodb in instance](#install-mongodb)
 
-## Setting Up AWS EC2 instance <a name='ec2-setup'></a>
+## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
 2.  Find and select [EC2 services](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) (use the search bar or click on the services at the top left of the nav)
 
@@ -25,7 +25,7 @@
     - `!IMPORTANT DO NO LOSE THE KEY` as it can be downloaded once only without changes in the future.
     - `create` -> enter a name for the key (filename), NO SPECIAL CHARACTERS `**DOWNLOAD IT!**`
     - `existing` -> just select a key created from before
-9.  Click the blue button `Launch Instances` then click [View Instances](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2)
+9.  Click the blue button `Launch Instances` then click [View Instances](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceState)
 
 
 **Note** Remember where the .pem key is, or safe a backup somewhere.  You loose it, you loose access to the instance (server).
