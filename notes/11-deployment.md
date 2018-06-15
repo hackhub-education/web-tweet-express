@@ -169,7 +169,7 @@ Commands usually used
 
 
 ## <a name="debug-reminder"></a>Debug reminder
-1.  Make sure aws port is opened by using [Security Group] <a name='security-group'></a>(https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
+1.  Make sure aws port is opened by using <a name='security-group'></a>[Security Group](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
   - make sure the ports needed are open, especially `port 80`
   - click on the security group your instance is using
   - click on the `inbound` tab choose `edit`, then `Add Rule`
