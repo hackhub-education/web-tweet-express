@@ -67,8 +67,7 @@ ubuntu@ip-172-31-39-27:~$
 ```
 7.  `ubuntu@ip-172-31-39-27:~$` this means you are logged in as user name `ubuntu`
 
-## Now we are in our server
-#### What are needed in our instance for our backend server to run?
+## What are needed in our instance for our backend server to run?
 [Week 8 Slide, page 9](https://docs.google.com/presentation/d/1FHtnNt2D-y9bvDC4mYqBAir5LytVxC4XompRgWNjtpA/edit#slide=id.g3c64275ecd_0_98)
 
 We need at least
@@ -77,3 +76,60 @@ We need at least
 
 Optional
   - mongodb
+
+## Now we are in our server, let's install nginx first.
+1.  [Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)  Run these two commands in terminal
+    - `sudo apt-get update -y` [What does this do?](https://askubuntu.com/questions/222348/what-does-sudo-apt-get-update-do)
+    - `sudo apt-get install nginx`
+2.  Open any web browser input your `instance_public_ip` instead of an url.  See what shows up.
+3.  Anything such as a message saying `Welcome to nginx!` showed up? If not, [why](#debug-reminder)?
+4.  Now we have a simple static page running online.
+
+**Notes**
+```
+Commands usually used
+  - sudo service nginx <options>
+    - start|stop|restart|reload|status
+
+Where are static files usually stored 
+	- /var/www/html/  (by default)
+	- can be defined anywhere you want it to be located
+```
+
+## Since we got the web server running, let's install nodejs.
+1.  [Install nodejs](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)  Run these two commands in terminal
+  - `curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - `
+  - `sudo apt-get install nodejs -y`
+2.  Run these two commands in terminal to see if `node` and `npm` are installed
+  - `node -v` and `npm -v`
+
+## Test if nodejs works
+-  inside the instance create a file named `hello.js`
+-  use `vim` or `nano` to open editor then paste the following code inside `hello.js`
+```
+#!/usr/bin/env nodejs
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(8080, 'localhost');
+console.log('Server running at http://localhost:8080/');
+```
+-  save `hello.js` then exit the editor
+-  run this command saying this file is excutable `chmod +x ./hello.js`
+-  run this command `node hello.js` (looks familiar when you are developing locally?)
+
+-  open a new terminal, ssh into the cloud server `ssh -i <location of .pem> ubuntu@<instance public ip>`
+-  run this in the new terminal after you are in `curl http://localhost:8080`
+-  What do you see?  Now close this terminal if you see what is expected
+
+
+
+
+
+## <a name="debug-reminder"></a>Debug reminder
+1.  Make sure aws port is opened by using [Security Group](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#SecurityGroups:sort=groupId)
+  - make sure the ports needed are open, especially `port 80`
+  - click on the security group your instance is using
+  - click on the `inbound` tab choose `edit`, then `Add Rule`
+  - enter your type, protocol, port range and source (HTTP and HTTPS are already predefined, just choose the one you need)
