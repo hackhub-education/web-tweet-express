@@ -9,6 +9,7 @@
 - [Test nodejs](#test-nodejs)
 - [Clone repo](#clone-repo)
 - [Install mongodb in instance](#install-mongodb)
+- [Setup node application](#run-node-app)
 
 ## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
@@ -166,6 +167,10 @@ Commands usually used
     - <options>: start|stop|restart|status
 ```
 
+## Run node application <a name='#run-node-app'></a>
+1.  `cd ~/web-tweet-express`  // go into your repo
+2.  `node app.js`, what are you expecting this time?
+3.  go to your browser type in `instance_public_ip:3000`, what is happening and why?
 
 
 ## <a name="debug-reminder"></a>Debug reminder
