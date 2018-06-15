@@ -9,7 +9,8 @@
 - [Test nodejs](#test-nodejs)
 - [Clone repo](#clone-repo)
 - [Install mongodb in instance](#install-mongodb)
-- [Setup node application](#run-node-app)
+- [Run node application](#run-node-app)
+- [PM2](#pm2)
 
 ## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
@@ -171,6 +172,23 @@ Commands usually used
 1.  `cd ~/web-tweet-express`  // go into your repo
 2.  `node app.js`, what are you expecting this time?
 3.  go to your browser type in `instance_public_ip:3000`, what is happening and why?
+
+## Use pm2 <a name='#pm2'></a>
+#### Why using pm2? this will keep node application running even if your terminal is closed
+1.  [npm pm2](https://www.npmjs.com/package/pm2) `sudo npm install -g pm2`
+2.  `cd ~/web-tweet-express`  // go into your repo
+3.  `pm2 start app.js`
+4.  `pm2 startup systemd`  // this will generate a script which makes pm2 auto start on boot
+  - script will look like
+  - `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u <username> --hp /home/<username>`
+
+```
+Commands often use
+  `pm2 <options> appName`
+    - <options>: start|delete|stop|restart
+  `pm2 save`  // this will save the application list to start up on boot
+```
+
 
 
 ## <a name="debug-reminder"></a>Debug reminder
