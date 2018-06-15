@@ -168,12 +168,12 @@ Commands usually used
     - <options>: start|stop|restart|status
 ```
 
-## Run node application <a name='#run-node-app'></a>
+## Run node application <a name='run-node-app'></a>
 1.  `cd ~/web-tweet-express`  // go into your repo
 2.  `node app.js`, what are you expecting this time?
 3.  go to your browser type in `instance_public_ip:3000`, what is happening and why?
 
-## Use pm2 <a name='#pm2'></a>
+## Use pm2 <a name='pm2'></a>
 #### Why using pm2? this will keep node application running even if your terminal is closed
 1.  [npm pm2](https://www.npmjs.com/package/pm2) `sudo npm install -g pm2`
 2.  `cd ~/web-tweet-express`  // go into your repo
