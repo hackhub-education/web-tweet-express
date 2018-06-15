@@ -1,5 +1,8 @@
 # Course Instructions 11-Deployment
 
+## **IMPORTANT**
+Anything done on server cannot be undone, please have a habit of making a copy when changing files / settings / or any kind of back up first.
+
 ### Contents
 - [Setting Up AWS EC2 instance](#ec2-setup)
 - [SSH into instance](#ssh)
@@ -11,6 +14,7 @@
 - [Install mongodb in instance](#install-mongodb)
 - [Run node application](#run-node-app)
 - [PM2](#pm2)
+- [Nginx Proxy](#nginx-proxy)
 
 ## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
@@ -102,6 +106,7 @@ Optional
 Commands usually used
   - sudo service nginx <options>
     - <options>: start|stop|restart|reload|status
+  - nginx -t  # checks if nginx setting have wrong syntax or look weird
 
 Where are static files usually stored 
 	- /var/www/html/  (by default)
@@ -184,11 +189,41 @@ Commands usually used
 
 ```
 Commands often use
-  `pm2 <options> appName`
+  - pm2 <options> appName
     - <options>: start|delete|stop|restart
-  `pm2 save`  // this will save the application list to start up on boot
+  - pm2 save`  # this will save the application list to start up on boot
 ```
 
+## Nginx Proxy <a name='nginx-proxy'></a>
+#### Doesn't the url with port look ugly and weird? Let's change it with proxy setting
+1.  `cd /etc/nginx/sites-available/`
+2.  `ls`  // what do you see in here? by default there is only one file named default
+3.  let's make a cp of this original file so we can reverse anytime if there is error
+4.  `sudo cp default default.bak`  // cp file `default` into a new file named `default.bak`
+5.  use either `vim` or `nano` editor of your choices and run `sudo nano default`
+6.  lots of things here are commented out, delete those lines if you wish
+7.  change the scripts in `location` block
+```
+Originally looks like
+location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ =404;
+}
+
+Change to
+    location / {
+        proxy_pass http://localhost:8080;  # match your application port
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+```
+8.  Change the port number as suggested above
+9.  After the change, run `sudo nginx -t` to check if there is errors with the configuration files
+10.  `sudo service nginx reload`, now go to your browser and only enter the `instance_public_ip`.  What is expected here?
 
 
 ## <a name="debug-reminder"></a>Debug reminder
