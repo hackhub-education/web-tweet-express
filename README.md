@@ -32,3 +32,4 @@ A twitter like web application.
 8. [passport](./notes/8-passport.md)
 9. [profile](./notes/9-profile.md)
 10. [tweet](./notes/10-tweet.md)
+11. [deployment](./notes/10-deployment.md)
