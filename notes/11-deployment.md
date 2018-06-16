@@ -18,6 +18,8 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 - [DNS setup with domain provider](#dns-setup1)
 - [DNS setup with instance](#dns-setup2)
 - [Disable IP access](#ip-access)
+- [Debug Reminder](#debug-reminder)
+- [Extra](#extra)
 
 ## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
@@ -104,7 +106,7 @@ Optional
 3.  Anything such as a message saying `Welcome to nginx!` showed up? [Why not](#debug-reminder)?
 4.  Now we have a simple static page running online.
 
-**Notes**
+<a name='notes-nginx'></a>**Notes**
 ```
 Commands usually used
   - sudo service nginx <options>
@@ -170,6 +172,8 @@ console.log('Server running at http://localhost:8080/');
 5.  Run `sudo systemctl enable mongod`  // this will automatically start mongod on boot up
 6.  Run `mongo`, now we are inside the `mongo shell` which you were taught how to use command line to `show dbs;` and do others
 7.  Run `show dbs;`, if you see some dbs then you have set this up correctly~ Hooray~
+
+<a name='notes-mongod'></a>**Notes**
 ```
 Commands usually used
   - sudo service mongod <options>
@@ -190,11 +194,13 @@ Commands usually used
   - script will look like
   - `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u <username> --hp /home/<username>`
 
+<a name='notes-pm2'><a/>**Notes**
 ```
 Commands often use
   - pm2 <options> appName
     - <options>: start|delete|stop|restart
-  - pm2 save`  # this will save the application list to start up on boot
+  - pm2 save  # this will save the application list to start up on boot
+  - pm2 logs  # shows the log real time
 ```
 
 ## Nginx Proxy <a name='nginx-proxy'></a>
@@ -336,3 +342,23 @@ server {
       - run these two commands
         - `sudo chown -R $USER /data/db`  // changes ownership to current user
         - `sudo chmod -R go+w /data/db`  // changes mode to writable
+
+3.  Any modification to nginx's file, remember to restart / reload nginx for settings to load
+
+
+## <a name="extra"></a>Extra
+1.  Few commands to remember which would help 
+  - [nginx](#notes-nginx)
+  - [mongod](#notes-mongod)
+  - [pm2](#notes-pm2)
+
+2.  Reference urls
+  - [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
+  - [EC2 services](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2)
+  - [Instances List](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:)
+  - [Launch Instance](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#LaunchInstanceWizard:)
+  - [Install nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
+  - [Install nodejs](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
+  - [Generate SSH Key and add to ssh agent](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+  - [Add SSH key to github](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+  - [Install MongoDB](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04)
