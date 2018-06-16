@@ -15,6 +15,9 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 - [Run node application](#run-node-app)
 - [PM2](#pm2)
 - [Nginx Proxy](#nginx-proxy)
+- [DNS setup with domain provider](#dns-setup1)
+- [DNS setup with instance](#dns-setup2)
+- [Disable IP access](#ip-access)
 
 ## Setting Up AWS EC2 instance
 1.  [Login to your aws management console](https://signin.aws.amazon.com/signin?redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3Fstate%3DhashArgs%2523%26isauthcode%3Dtrue&client_id=arn%3Aaws%3Aiam%3A%3A015428540659%3Auser%2Fhomepage&forceMobileApp=0)
@@ -224,6 +227,96 @@ Change to
 8.  Change the port number as suggested above
 9.  After the change, run `sudo nginx -t` to check if there is errors with the configuration files
 10.  `sudo service nginx reload`, now go to your browser and only enter the `instance_public_ip`.  What is expected here?
+
+
+## DNS setup Part 1 <a name='dns-setup1'></a>
+#### Since domain provider's page are all different so this is just a brief on how to setup
+1.  Login into your domain provider such as godaddy, hostgator and so on.
+2.  Find where the dns setting is, or google somethign like godaddy dns setup
+3.  When you are at the dns setting, there will be a few fields such as
+  - type  (the type of dns you want to create)
+  - name | host ( the name / subdomain )
+  - ttl ( cache refresh )
+  - address | value | points to ( where you want the record to direct to )
+4.  We will be using
+  - type -> A
+  - name -> api (this means the `subdomain` so the url will look like `api.domain.com`)
+  - ttl -> (as low as you can go)
+  - address -> `instance_public_ip`
+5.  The above setting means, when we enter `api.domain.com` on browser, it'll redirect to this instance `32.238.283.283`
+
+## DNS setup Part 2 <a name='dns-setup2'></a>
+#### After we are done with the settings in domain provider, we should make changes to our instance settings too
+1.  SSH into server using terminal (windows, use git-bash terminal)
+    - `ssh -i <location of .pem> ubuntu@<instance public ip>`
+2.  go to the `site-available` directory
+    - `cd /etc/nginx/site-available`
+3.  to be more organized, I would suggest one domain one setting file
+4.  go to `site-enable` directory where is linked with `site-available` to enable the config
+5.  `sudo rm default`  // to delete the file default which will disable the setting
+6.  Let's make a copy of this file and clean up the file too
+    - `sudo cp default <full domain name>`
+7.  remove all the lines that has comments
+8.  remove these too
+```
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html;
+
+  # Add index.php to the list if you are using PHP
+  index index.html index.htm index.nginx-debian.html;
+
+```
+9.  replace
+```
+  # replace
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  # with
+  listen 80;
+```
+10.  The whole file should look something similiar to
+```
+server {
+        listen 80;
+
+        server_name <full domain name>;
+
+        location / {
+            proxy_pass http://localhost:3000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+}
+```
+11.  Symbolic to `site-enable`
+    - `sudo ln -s /etc/nginx/site-avaiable/<full domain name> /etc/nginx/site-enable/<full domain name>`
+12.  `sudo nginx -t` // check if config is good without errors
+13.  `sudo service nginx reload`  // reload the service
+
+## Disable IP access <a name='ip-access'></a>
+1.  SSH into server using terminal (windows, use git-bash terminal)
+    - `ssh -i <location of .pem> ubuntu@<instance public ip>`
+2.  go to the `site-available` directory
+    - `cd /etc/nginx/site-available`
+3.  make a new file here `sudo nano <filename>`  // filename of your choice
+4.  add these into it
+```
+server {  
+    listen      80;
+    listen      443; # add this to block HTTPS access
+    server_name <server_ip>;
+    return      404;
+}
+```
+5.  Symbolic to `site-enable`
+    - `sudo ln -s /etc/nginx/site-avaiable/<filename> /etc/nginx/site-enable/<filename>`
+6.  `sudo nginx -t` // check if config is good without errors
+7.  `sudo service nginx reload`  // reload the service
 
 
 ## <a name="debug-reminder"></a>Debug reminder
