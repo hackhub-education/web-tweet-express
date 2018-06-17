@@ -18,6 +18,7 @@ Anything done on server cannot be undone, please have a habit of making a copy w
 - [DNS setup with domain provider](#dns-setup1)
 - [DNS setup with instance](#dns-setup2)
 - [Disable IP access](#ip-access)
+- [HTTPS with certbot](https://certbot.eff.org/)
 - [Debug Reminder](#debug-reminder)
 - [Extra](#extra)
 
