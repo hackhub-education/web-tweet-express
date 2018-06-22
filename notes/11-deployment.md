@@ -259,7 +259,7 @@ Change to
 2.  go to the `site-available` directory
     - `cd /etc/nginx/site-available`
 3.  to be more organized, I would suggest one domain one setting file
-4.  go to `site-enable` directory where is linked with `site-available` to enable the config
+4.  go to `cd /etc/nginx/site-enable` directory where is linked with `site-available` to enable the config
 5.  `sudo rm default`  // to delete the file default which will disable the setting
 6.  Let's make a copy of this file and clean up the file too
     - `sudo cp default <full domain name>`
@@ -300,7 +300,7 @@ server {
         }
 }
 ```
-11.  Symbolic to `site-enable`
+11.  Symbolic to `/etc/nginx/site-enable`
     - `sudo ln -s /etc/nginx/site-avaiable/<full domain name> /etc/nginx/site-enable/<full domain name>`
 12.  `sudo nginx -t` // check if config is good without errors
 13.  `sudo service nginx reload`  // reload the service
