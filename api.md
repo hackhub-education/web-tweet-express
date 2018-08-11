@@ -5,7 +5,7 @@
 ### Note: if the API is `token required`, you need to set your jwt token in the header as below:
 ```
 header: {
-  Authorization: JWT JSON_WEB_TOKEN_STRING.....
+  Authorization: Bearer JSON_WEB_TOKEN_STRING.....
 }
 ```
 
