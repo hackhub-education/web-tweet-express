@@ -85,7 +85,7 @@ header: {
 }
 ```
 
-### GET `/profile/:id` (token required)
+### GET `/profile` (token required)
 * **Description:** get profile data for specific user
 * **Url params:** mongo object id of the user
 * **Response**
@@ -97,7 +97,7 @@ header: {
 }
 ```
 
-### PUT `/profile/:id` (token required)
+### PUT `/profile` (token required)
 * **Description:** update profile data for specific user
 * **Url params:** mongo object id of the user
 * **Request body:**
