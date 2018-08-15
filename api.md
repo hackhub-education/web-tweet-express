@@ -5,7 +5,7 @@
 ### Note: if the API is `token required`, you need to set your jwt token in the header as below:
 ```
 header: {
-  Authorization: JWT JSON_WEB_TOKEN_STRING.....
+  Authorization: Bearer JSON_WEB_TOKEN_STRING.....
 }
 ```
 
@@ -83,7 +83,7 @@ header: {
 }
 ```
 
-### GET `/profile/:id` (token required)
+### GET `/profile` (token required)
 * **Description:** get profile data for specific user
 * **Url params:** mongo object id of the user
 * **Response**
@@ -95,7 +95,7 @@ header: {
 }
 ```
 
-### Update `/profile/:id` (token required)
+### Update `/profile` (token required)
 * **Description:** update profile data for specific user
 * **Url params:** mongo object id of the user
 * **Request body:**
