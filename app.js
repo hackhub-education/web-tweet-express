@@ -9,7 +9,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 // connect mongoDB
-mongoose.connect('mongodb://localhost:27017/webdxd');
+mongoose.connect('mongodb+srv://hackhub:webdxd2020@web-tweet-qxnll.mongodb.net/web-tweet?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
